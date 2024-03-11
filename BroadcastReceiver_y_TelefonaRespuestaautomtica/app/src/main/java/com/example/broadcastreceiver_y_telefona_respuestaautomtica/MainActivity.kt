@@ -78,7 +78,7 @@ fun BrodcastMainScreen() {
         OutlinedTextField(
             value = numero,
             onValueChange = { numero = it },
-            label = { Text("Responder Number") },
+            label = { Text("Número de teléfono") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)
@@ -87,7 +87,7 @@ fun BrodcastMainScreen() {
         OutlinedTextField(
             value = mensaje,
             onValueChange = { mensaje = it },
-            label = { Text("SMS Text") },
+            label = { Text("Mensaje") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 16.dp)

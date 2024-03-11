@@ -13,12 +13,15 @@ class BrodcastReciver: BroadcastReceiver() {
             val state = intent.getStringExtra(TelephonyManager.EXTRA_STATE)
             if (state == TelephonyManager.EXTRA_STATE_RINGING) {
                 // Recupera el número de teléfono
-                val numeroTelefono = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-                val numeroEntrante = numeroTelefono.getString("LlamadaEntrante", null)
-                val numeroDestino = numeroTelefono.getString("numeroDestino", null)
-                if (numeroEntrante != null &&  numeroEntrante == numeroDestino) {
+                val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val incomingPhoneNumber = sharedPreferences.getString("incomingPhoneNumber", null)
+                val destinationAddress = sharedPreferences.getString("destinationAddress", null)
+                val textMessage = sharedPreferences.getString("textMessage", null)
+                Log.d("BroadcastReceiver", "Incoming phone number: $incomingPhoneNumber")
+                if (incomingPhoneNumber != null &&  incomingPhoneNumber==destinationAddress) {
+                    Log.d("BroadcastReceiver", "Sending SMS")
                     var smsManager: SmsManager = SmsManager.getDefault()
-                    smsManager.sendTextMessage(numeroEntrante, null, null, null, null)
+                    smsManager.sendTextMessage(incomingPhoneNumber, null, textMessage, null, null)
                 }
             }
         }

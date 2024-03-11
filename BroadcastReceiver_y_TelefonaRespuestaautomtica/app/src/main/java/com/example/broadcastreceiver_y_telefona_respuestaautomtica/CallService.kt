@@ -7,7 +7,7 @@ import android.telecom.CallScreeningService
 class CallService : CallScreeningService() {
     override fun onScreenCall(callDetails: Call.Details) {
         val numeroTelefono = callDetails.handle.schemeSpecificPart
-        val estadoLlamada = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        estadoLlamada.edit().putString("llamadaEntrante", numeroTelefono).apply()
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("incomingPhoneNumber", numeroTelefono).apply()
     }
 }
